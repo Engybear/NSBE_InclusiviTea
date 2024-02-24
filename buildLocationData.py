@@ -106,6 +106,7 @@ with open('city_database.csv','w', encoding='utf-8') as csvFile:
 # file = open('city_database.csv','w')
     # csvWriter = csv.writer(csvFile, delimiter=',')
 
+    #wohoo commit
     csvFile.write("id,type,name,address")
     csvFile.write("\n")
     
