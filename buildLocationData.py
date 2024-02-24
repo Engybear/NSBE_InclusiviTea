@@ -1,3 +1,7 @@
+import requests
+from bs4 import BeautifulSoup as bs
+import concurrent.futures
+
 import overpass
 import csv
 api = overpass.API()
@@ -45,7 +49,6 @@ csv_Shop = []
 csv_Building = []
 csv_Amenity = []
 
-# UPDATE TO CHECK FOR DUPLICATES IN YOURSELF
 for shop in responseShop:
     count+=1
 
@@ -85,29 +88,62 @@ for amenity in responseAmenity: # registered 4954
 
 
 
-# printAll()
+
+def getURL(name, address):
+
+    query = name + " " + address + " Location"
+    params = {
+        "q":query,
+        "tbm":"isch"
+    }
+    html = requests.get("https://www.google.com/search",params,timeout=10)
+    soup = bs(html.content,features="html.parser")
+    images = soup.select('div img')
+    return images[0]['src']
+    
+
 with open('city_database.csv','w', encoding='utf-8') as csvFile:
 # file = open('city_database.csv','w')
     # csvWriter = csv.writer(csvFile, delimiter=',')
+
+    # csvFile.write("type,name,address")
     
+    iterator = 0
     for i in csv_Shop:
     # csvWriter.writerows(csv_Shop)
-        for j in i:
+        csvFile.write(str(iterator)) # add id
+        csvFile.write(",")
+        for j in i: # add tags
             csvFile.write(j)
             csvFile.write(",")
+        #add url
+
         csvFile.write("\n")
+        iterator += 1
     for i in csv_Building:
         # csvWriter.writerow(i)
+        
+        csvFile.write(str(iterator))
+        csvFile.write(",")
         for j in i:
             csvFile.write(j)
             csvFile.write(",")
+        #add url
+
         csvFile.write("\n")
+        iterator+=1
 
     for i in csv_Amenity:
+        
+        csvFile.write(str(iterator))
+        csvFile.write(",")
         for j in i:
             csvFile.write(j)
             csvFile.write(",")
+        #add url
+
         csvFile.write("\n")
+        iterator += 1
         # csvWriter.writerow(i)
 
 csvFile.close()
