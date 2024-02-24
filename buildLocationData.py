@@ -106,7 +106,8 @@ with open('city_database.csv','w', encoding='utf-8') as csvFile:
 # file = open('city_database.csv','w')
     # csvWriter = csv.writer(csvFile, delimiter=',')
 
-    # csvFile.write("type,name,address")
+    csvFile.write("id,type,name,address")
+    csvFile.write("\n")
     
     iterator = 0
     for i in csv_Shop:
