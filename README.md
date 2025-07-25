@@ -1,5 +1,9 @@
 # NSBE_InclusiviTea
 
+<div align="left">
+  <img src="InclusiviTea_Logo.png" style="width:200px"/>
+</div>
+
 ## Inspiration
 4.8%. This is the population of African Americans in Canada. In a place as culturally diverse, there is a lack of inclusive spaces for minorities. We want to make a platform where cultures can share their experiences of places in our city to promote or discourage certain meeting spaces.
 
